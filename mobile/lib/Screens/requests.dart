@@ -1,8 +1,13 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile/Screens/dashboard.dart';
 import '../utilities/constants.dart';
+import '../Services/LoginService.dart';
+import '../Models/beneficaire.dart';
+
+import 'package:http/http.dart';
 
 class RequestsScreen extends StatefulWidget {
   @override
@@ -10,47 +15,50 @@ class RequestsScreen extends StatefulWidget {
 }
 
 class _RequestsScreenState extends State<RequestsScreen> {
+  Future fetchBeneficaire() async {
+    var res = await get(Uri.parse("http://10.0.2.2:8080/beneficaire"));
+    var jsonData = jsonDecode(res.body);
+    List<Beneficaire> beneficaires = [];
+    for (var u in jsonData) {
+      Beneficaire beneficaire = Beneficaire(
+          idBeneficaire: u["idBeneficaire"],
+          nom: u['nom'],
+          mail: u['mail'],
+          telephone: u['telephone'],
+          password: u['password'],
+          imageURL: u['imageURL'],
+          adresse: u['adresse'],
+          doneur: u['doneur']);
+      beneficaires.add(beneficaire);
+    }
+    print(beneficaires.length);
+    return (beneficaires);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.light,
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
-            children: <Widget>[
-              Container(
-                color: Color.fromARGB(255, 226, 226, 226),
-                height: double.infinity,
-                width: double.infinity,
-              ),
-              Container(
-                height: double.infinity,
-                child: SingleChildScrollView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                    vertical: 80.0,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.asset('assets/quote.png',
-                          width: 500, fit: BoxFit.cover),
-                      SizedBox(
-                        height: 30.0,
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
+        body: Container(
+          child: Card(
+            child: FutureBuilder(
+                future: fetchBeneficaire(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return Container(child: Center(child: Text(
+                        "Loading..."),),);
+                  }
+                  else
+                    return ListView.builder(itemCount: snapshot.data!.length,
+                        itemBuilder: (context, i) {
+                          return ListTile(
+                          title: Text(snapshot.data[i].nom),
+                          subtitle: Text("Adresse: "+snapshot.data[i].adresse),
+                          trailing: Text("Telephone: "+snapshot.data[i].telephone),
+                          );
+                        });
+                }),
           ),
-        ),
-      ),
+        )
     );
   }
 }

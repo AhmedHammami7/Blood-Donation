@@ -12,7 +12,7 @@ Future<Beneficaire> fetchBeneficaire() async {
   if (res.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return Beneficaire.fromJson(jsonDecode(res.body)[0]);
+    return Beneficaire.fromJson(jsonDecode(res.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.

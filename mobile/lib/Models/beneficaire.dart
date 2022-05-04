@@ -1,13 +1,14 @@
 import 'dart:core';
 
 class Beneficaire {
-  int idBeneficaire;
-  String nom;
-  String mail;
-  String telephone;
-  String password;
-  String imageURL;
-  bool doneur;
+  final int idBeneficaire;
+  final String nom;
+  final String mail;
+  final String telephone;
+  final String password;
+  final String imageURL;
+  final String adresse;
+  final bool doneur;
 
    Beneficaire({
     required this.idBeneficaire,
@@ -16,6 +17,7 @@ class Beneficaire {
     required this.telephone,
     required this.password,
     required this.imageURL,
+    required this.adresse,
     required this.doneur,
 });
   factory Beneficaire.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,7 @@ class Beneficaire {
       telephone: json['telephone'],
       password: json['password'],
       imageURL: json['imageURL'],
+      adresse: json['adresse'],
       doneur: json['doneur'],
     );
   }
