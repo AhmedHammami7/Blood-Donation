@@ -21,13 +21,13 @@ public class Beneficaire implements Serializable {
     private String telephone;
     private String password;
     private String imageURL;
+    private String adresse;
     private Boolean doneur;
     @ManyToOne()
     @JoinColumn(name = "type_de_sang",referencedColumnName = "type")
     private Sang sang;
 
-    public Beneficaire(Long idBeneficaire,
-                       String nom,
+    public Beneficaire(String nom,
                        String mail,
                        String telephone,
                        String password,
@@ -40,6 +40,7 @@ public class Beneficaire implements Serializable {
         this.telephone = telephone;
         this.password = password;
         this.imageURL = imageURL;
+        this.adresse = adresse;
         this.doneur = doneur;
         this.sang=sang;
     }
@@ -52,6 +53,7 @@ public class Beneficaire implements Serializable {
                        String telephone,
                        String password,
                        String imageURL,
+                       String adresse,
                        Boolean doneur,
                        Sang sang) {
         this.nom = nom;
@@ -59,6 +61,7 @@ public class Beneficaire implements Serializable {
         this.telephone = telephone;
         this.password = password;
         this.imageURL = imageURL;
+        this.adresse = adresse;
         this.doneur = doneur;
         this.sang=sang;
     }
@@ -109,8 +112,17 @@ public class Beneficaire implements Serializable {
         return imageURL;
     }
 
+
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     public Boolean getDoneur() {

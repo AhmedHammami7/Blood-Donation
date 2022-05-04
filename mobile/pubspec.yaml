@@ -66,6 +66,7 @@ flutter:
     - assets/logos/facebook.png
     - assets/logos/google.jpg
     - assets/sign.png
+    - assets/quote.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

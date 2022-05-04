@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile/Screens/dashboard.dart';
+import 'package:mobile/Screens/requests.dart';
 import '../Services/LoginService.dart';
 import '../utilities/constants.dart';
 
@@ -122,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         Navigator.of(context).pushReplacement(
           CupertinoPageRoute(
-            builder: (_) => Login(),
+            builder: (_) => RequestsScreen(),
           ),
         );
       },

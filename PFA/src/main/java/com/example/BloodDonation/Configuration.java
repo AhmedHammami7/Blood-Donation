@@ -41,6 +41,7 @@ public class Configuration {
                     "22765284",
                     "azerty123",
                     "www.hhh.com",
+                    "mourouj",
                     Boolean.TRUE,
                     a1
             );

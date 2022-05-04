@@ -12,14 +12,16 @@ Future<Beneficaire> fetchBeneficaire() async {
   if (res.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return Beneficaire.fromJson(jsonDecode(res.body));
+    return Beneficaire.fromJson(jsonDecode(res.body)[0]);
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load beneficaire');
   }
 
+
 }
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
