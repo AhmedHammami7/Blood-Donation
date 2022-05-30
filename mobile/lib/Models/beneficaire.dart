@@ -1,24 +1,28 @@
 import 'dart:core';
 
+import 'package:mobile/Models/sang.dart';
+
 class Beneficaire {
-  final int idBeneficaire;
-  final String nom;
-  final String mail;
-  final String telephone;
-  final String password;
-  final String imageURL;
-  final String adresse;
-  final bool doneur;
+   int? idBeneficaire;
+   String? nom;
+   String? mail;
+   String? telephone;
+   String? password;
+   String? imageURL;
+   String? adresse;
+   bool? doneur;
+   Sang? sang;
 
    Beneficaire({
-    required this.idBeneficaire,
-    required this.nom,
-    required this.mail,
-    required this.telephone,
-    required this.password,
-    required this.imageURL,
-    required this.adresse,
-    required this.doneur,
+     this.idBeneficaire,
+     this.nom,
+     this.mail,
+     this.telephone,
+     this.password,
+     this.imageURL,
+     this.adresse,
+     this.doneur,
+     this.sang
 });
   factory Beneficaire.fromJson(Map<String, dynamic> json) {
     return Beneficaire(
@@ -30,6 +34,7 @@ class Beneficaire {
       imageURL: json['imageURL'],
       adresse: json['adresse'],
       doneur: json['doneur'],
+      sang:json['Sang']
     );
   }
 

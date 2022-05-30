@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import static java.time.Month.JULY;
+import static java.time.Month.JUNE;
 
 
 @org.springframework.context.annotation.Configuration
@@ -40,20 +41,30 @@ public class Configuration {
                     "motezlassoued0@gmail.com",
                     "22765284",
                     "azerty123",
-                    "www.hhh.com",
+                    "https://drive.google.com/uc?export=view&id=1GN3vlf7FJDqXDB5kzG3m5qjFYUk5rEae",
                     "mourouj",
                     Boolean.TRUE,
                     a1
             );
-            beneficaireRepository.saveAll(List.of(ben1));
+            Beneficaire ben2= new Beneficaire(
+                    "Ahmed Hammami",
+                    "ahmedhammami377@gmail.com",
+                    "25021738",
+                    "ahmed123",
+                    "https://drive.google.com/uc?export=view&id=1wzLlq2k_lVYeSUWgV4xfadJkXMsfgcBz",
+                    "bizerte",
+                    Boolean.FALSE,
+                    o1
+            );
+            beneficaireRepository.saveAll(List.of(ben1,ben2));
 
-            Requete req1 = new Requete("Mahdia","00000000","accident voiture", LocalDate.of(2022, JULY,21),a1,ben1);
-            requeteRepository.saveAll(List.of(req1));
-
+            Requete req1 = new Requete("Mahdia","22765284","accident voiture", LocalDate.of(2022, JULY,21),a1,ben1);
+            Requete req2 = new Requete("Bizerte","25021738","accident moto", LocalDate.of(2022, JUNE,03),o1,ben2);
+            requeteRepository.saveAll(List.of(req1,req2));
 
             Administrateur administrateur = new Administrateur("ADMIN", "ADMIN@FST.TN","admin");
             adminRepository.saveAll(List.of(administrateur));
-            Blog blog = new Blog("Les different type de sang","Les sang A B O AB","WWW.SANG.TN");
+            Blog blog = new Blog("The Surprising Benefits of Donating Blood\n","\nNewYork-Presbyterian experts\n explain how donating blood not\nonly helps someone in need, but\nalso offers health benefits for the\ndonors themselves.","https://drive.google.com/uc?export=view&id=1an1nqZAcR5gyq3fRdPhUcbk6CxGxUiy6");
             blogRepository.saveAll(List.of(blog));
 
 

@@ -54,8 +54,8 @@ class _LoginState extends State<Login> {
             future: futureBeneficaire,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                String a=snapshot.data!.nom;
-                return Text(a);
+                String? a=snapshot.data!.nom;
+                return Text(a!);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }

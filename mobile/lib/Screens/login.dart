@@ -8,6 +8,7 @@ import '../Models/beneficaire.dart';
 import 'package:mobile/Screens/requests.dart';
 import '../Services/LoginService.dart';
 import '../utilities/constants.dart';
+import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: TextField(
             obscureText: true,
             style: TextStyle(
-              color: Color.fromARGB(255, 226, 226, 226),
+              color: Color.fromARGB(255, 86, 76, 76),
               fontFamily: 'poppins',
             ),
             decoration: InputDecoration(
@@ -126,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
       onTap: () {
         Navigator.of(context).pushReplacement(
           CupertinoPageRoute(
-            builder: (_) => RequestsScreen(),
+            builder: (_) => HomeScreen(),
           ),
         );
       },
