@@ -51,5 +51,8 @@ public class BlogService {
         if (blog.getImageURL() != null && blog.getImageURL().length() > 0 && !Objects.equals(newBlog.getImageURL(), blog.getImageURL())) {
             newBlog.setImageURL(blog.getImageURL());
         }
+        if (blog.getContent() != null && blog.getContent().length() > 0 && !Objects.equals(newBlog.getContent(), blog.getContent())) {
+            newBlog.setContent(blog.getContent());
+        }
     }
 }

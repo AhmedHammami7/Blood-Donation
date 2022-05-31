@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:mobile/Screens/blog.dart';
 import 'package:mobile/Screens/login.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -14,17 +15,16 @@ import '../Services/LoginService.dart';
 import '../Models/beneficaire.dart';
 import 'package:http/http.dart';
 
-import 'blogpage.dart';
 import 'home.dart';
 
-class BlogsScreen extends StatefulWidget {
+class BlogPageScreen extends StatefulWidget {
   @override
-  _BlogsScreenState createState() => _BlogsScreenState();
+  _BlogPageScreenState createState() => _BlogPageScreenState();
 }
 
-class _BlogsScreenState extends State<BlogsScreen> {
+class _BlogPageScreenState extends State<BlogPageScreen> {
   Future fetchBlog() async {
-    var res = await get(Uri.parse("http://10.0.2.2:8080/blog/"));
+    var res = await get(Uri.parse("http://10.0.2.2:8080/blog"));
     var jsonData = jsonDecode(res.body);
     List<Blog> blogs = [];
     //List<Requete> requetes = Requete.getRequetes();
@@ -34,7 +34,7 @@ class _BlogsScreenState extends State<BlogsScreen> {
         titre: u["titre"],
         description: u["description"],
         imageURL: u["imageURL"],
-        //sang: u["sang"],
+        content: u["content"],
         //beneficiaire: u["beneficaire"]
       );
       blogs.add(blog);
@@ -53,7 +53,9 @@ class _BlogsScreenState extends State<BlogsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Theme
+            .of(context)
+            .scaffoldBackgroundColor,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
@@ -61,9 +63,9 @@ class _BlogsScreenState extends State<BlogsScreen> {
             color: Colors.red,
           ),
           onPressed: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).pop(
               CupertinoPageRoute(
-                builder: (_) => HomeScreen(),
+                builder: (_) => BlogsScreen(),
               ),
             );
           },
@@ -87,28 +89,9 @@ class _BlogsScreenState extends State<BlogsScreen> {
           SizedBox(
             height: 30.0,
           ),
-          Text.rich(
-            TextSpan(
-              style: TextStyle(
-                fontSize: 30,
-                fontFamily: 'poppins',
-              ),
-              children: [
-                WidgetSpan(
-                  child: Icon(
-                    Icons.article,
-                    size: 35,
-                    color: Color.fromARGB(255, 86, 76, 76),
-                  ),
-                ),
-                TextSpan(
-                  text: 'Blogs                                    \n',
-                )
-              ],
-            ),
-          ),
+
           Container(
-            height: 520 ,
+            height: 520,
             child: Card(
               child: FutureBuilder(
                   future: fetchBlog(),
@@ -124,26 +107,24 @@ class _BlogsScreenState extends State<BlogsScreen> {
                         child: ListView.builder(
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, i) {
-                              return Container(
-                                decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: NetworkImage(snapshot.data[i].imageURL),opacity: 0.5)),
-                                child: ListTile(
+                              return SafeArea(
+                                  //decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: NetworkImage(snapshot.data[i].imageURL))),
+                                  child: Expanded(
 
-                                  title: Text(snapshot.data[i].titre,style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-                                  subtitle:
-                                      Text(snapshot.data[i].description,textAlign: TextAlign.justify),
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => BlogPageScreen(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            }),
-                      );
-                  }),
+                                  child:Container(child:
+                                  Column(children:<Widget>[
+                                    SizedBox(height: 20,),
+                                    Text(snapshot.data[i].titre,style: TextStyle(fontSize:20,fontWeight: FontWeight.bold,color: Color.fromARGB(255, 233, 13, 24)),/*textAlign: TextAlign.right*/),
+                                    SizedBox(height: 20,),
+                                    new Image.network(snapshot.data[i].imageURL),
+                                    SizedBox(height: 40,),
+
+                                    Text(snapshot.data[i].content,textAlign: TextAlign.justify,style: TextStyle(fontSize:17,fontWeight: FontWeight.bold))],
+                              ),
+                              )
+                            ));},
+                      )
+                      );}),
             ),
           ),
         ],

@@ -64,7 +64,7 @@ public class Configuration {
 
             Administrateur administrateur = new Administrateur("ADMIN", "ADMIN@FST.TN","admin");
             adminRepository.saveAll(List.of(administrateur));
-            Blog blog = new Blog("The Surprising Benefits of Donating Blood\n","\nNewYork-Presbyterian experts\n explain how donating blood not\nonly helps someone in need, but\nalso offers health benefits for the\ndonors themselves.","https://drive.google.com/uc?export=view&id=1an1nqZAcR5gyq3fRdPhUcbk6CxGxUiy6");
+            Blog blog = new Blog("The Surprising Benefits of Donating Blood\n","\nNewYork-Presbyterian experts\n explain how donating blood not\nonly helps someone in need, but\nalso offers health benefits for the\ndonors themselves.","Every two seconds, someone in the U.S. requires\na blood transfusion, according to the American\nRed Cross. \nWhile blood donors don't expect to be rewarded \nfor the act of kindness, rolling up your sleeve\ncomes with some surprising health benefits. ","https://drive.google.com/uc?export=view&id=1an1nqZAcR5gyq3fRdPhUcbk6CxGxUiy6");
             blogRepository.saveAll(List.of(blog));
 
 

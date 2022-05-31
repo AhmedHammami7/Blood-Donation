@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile/Screens/signup.dart';
 
 import '../Services/loginService.dart';
 import 'login.dart';
@@ -116,7 +117,11 @@ class _LandingState extends State<Landing> {
               ),
             ),
             GestureDetector(
-              onTap: () => print('Sign Up Button Pressed'),
+              onTap: () => {Navigator.of(context).pushReplacement(
+                CupertinoPageRoute(
+                  builder: (_) => SignUpPage(),
+                ),
+              )},
               child: RichText(
                 text: TextSpan(
                   children: [
@@ -130,6 +135,7 @@ class _LandingState extends State<Landing> {
                     ),
                     TextSpan(
                       text: 'Create',
+
                       style: TextStyle(
                           color: Color.fromARGB(255, 86, 76, 76),
                           fontSize: 18.0,

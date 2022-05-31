@@ -4,12 +4,14 @@ class Blog {
    int? id;
    String? titre;
    String? description;
+   String? content;
    String? imageURL;
 
   Blog({
      this.id,
      this.titre,
      this.description,
+     this.content,
      this.imageURL,
 
   });
@@ -18,6 +20,7 @@ class Blog {
       id: json['id'] as int,
       titre: json['titre'] as String,
       description: json['description'] as String,
+      content: json['content'] as String,
       imageURL: json['imageURL'] as String,
     );
   }
